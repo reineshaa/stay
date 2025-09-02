@@ -2,7 +2,7 @@
 
 class ParticipateView extends ParticipateController{
     public function show(){
-        $participates = $this->getParticipate();
+        $participates = $this->getParticipates();
 
         foreach ($participates as $participate) { ?>
             <tr>
@@ -21,7 +21,7 @@ class ParticipateView extends ParticipateController{
 
     public function find()
     {
-        $detailParticipate = $this->getParticipateBy();
+        $detailParticipate = $this->getParticipatesBy();
         if(empty($detailParticipate))
             return;
         foreach ($detailParticipate as $detail) { ?>

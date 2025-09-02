@@ -1,11 +1,3 @@
-<?php
-include "connection.php";
-include "./model/participate.model.php";
-include "./controller/participate.controller.php";
-include "./view/participate/participate.view.php";
-$participate = new ParticipateView();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +8,21 @@ $participate = new ParticipateView();
 </head>
 <body>
     <!-- navigation bar -->
-     <?php include "./view/utils/navbar.utils.php"; ?>
+     <?php include __DIR__ . "/utils/navbar.utils.php"; ?>
     
-    <!-- mencari produk via url -->
-     <?php $participate->find(); ?>
+    <?php 
+    // include controller & view
+    include __DIR__ . "/../controller/participate.controller.php";
+    include __DIR__ . "/participate/participate.view.php";
 
-    <!-- semua produk -->
+    $participates = new ParticipateView();
+    ?>
+
+    <!-- mencari produk via url -->
+    <?php $participates->find(); ?> 
+    
+
+    <!--semua produk-->
     <table border="1">
         <tr>
             <th>ID</th>
@@ -34,7 +35,7 @@ $participate = new ParticipateView();
             <th>STATUS</th>
 
         </tr>
-        <?php $participate->show() ?>
+        <?php $participates->show() ?>
     </table>
 
     <!-- footer disini -->

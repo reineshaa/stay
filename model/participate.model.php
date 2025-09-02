@@ -1,6 +1,8 @@
 <?php
 
-class ProductModel extends Connection
+include_once __DIR__ . "/../view/connection.php";
+
+class ParticipateModel extends Connection
 {
     // protect variable untuk kebutuhan insert data
     protected $nama;
@@ -12,28 +14,27 @@ class ProductModel extends Connection
     protected $status;
 
 
-    protected function findAll()
-    {
+    public function findAll() {
         $sql = "SELECT * FROM peserta";
-        $result = $this->connect()->query($sql); //call function dari default mysql
-        if ($result->num_rows > 0 ) {
-            while ($data = mysql_fetch_assoc($result)) {
-                $participate[] = $data;
-            }
-            return $participate;
+        $result = $this->connect()->query($sql);
+
+        $data = [];
+        while ($row = $result->fetch_assoc()) { // ✅ mysqli
+            $data[] = $row;
         }
+        return $data;
     }
 
-    protected function findOne($id)
-    {
-        $sql = "SELECT * FROM peserta WHERE id = " . $id;
+    public function findOne($id) {
+        $sql = "SELECT * FROM peserta WHERE id = '$id'";
         $result = $this->connect()->query($sql);
-        if ($result->num_rows > 0) {
-            while ($data = mysql_fetch_assoc($result)) {
-                $participate[] = $data;
-            }
-            return $participate;
+
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
         }
+        return $data;
     }
+
 }
 ?>

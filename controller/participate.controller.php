@@ -1,4 +1,7 @@
 <?php
+
+include_once __DIR__ . "/../model/participate.model.php";
+
 class ParticipateController extends ParticipateModel
 {
     public function getParticipates()
